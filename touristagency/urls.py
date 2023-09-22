@@ -23,7 +23,7 @@ import reservations.views as reservation_view
 router = DefaultRouter()
 router.register("offers",offer_view.OfferViewSet, basename='offer')
 router.register("categories",offer_view.CategoryViewSet, basename='category')
-
+router.register("reservations",reservation_view.ReservationViewSet, basename='reservation')
 
 urlpatterns = [
     path('admin/', admin.site.urls),
