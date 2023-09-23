@@ -44,7 +44,7 @@ class OfferSerializer(serializers.ModelSerializer):
 
 class ReservationSerializer(serializers.ModelSerializer):
     user = UserSerializer(read_only=True)
-    offer = OfferSerializer(read_only=True)
+    offer = serializers.PrimaryKeyRelatedField(queryset=Offer.objects.all())
 
     class Meta:
         model = Reservation
@@ -59,3 +59,8 @@ class ReservationSerializer(serializers.ModelSerializer):
         ]
 
         read_only_fields = ['id', 'created_at', 'updated_at', 'user']
+
+    def to_representation(self, instance):
+        representation = super().to_representation(instance)
+        representation['offer'] = OfferSerializer(instance.offer).data
+        return representation

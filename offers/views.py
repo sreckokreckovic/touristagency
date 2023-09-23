@@ -1,9 +1,10 @@
+from django.db.models import Count
 from rest_framework.permissions import IsAdminUser
 from rest_framework.response import Response
 from rest_framework.viewsets import ModelViewSet
 from offers.models import Offer, Category, Media
 from .serializers import OfferSerializer, CategorySerializer
-from rest_framework import permissions, status
+from rest_framework import permissions, status, generics
 
 
 class IsReadOnlyOrAdmin(permissions.BasePermission):
@@ -38,3 +39,11 @@ class OfferViewSet(ModelViewSet):
             media = Media.objects.create(offer=offer, path=image)
 
         return Response(status=status.HTTP_201_CREATED)
+
+
+class TopOffersView(generics.ListAPIView):
+    serializer_class = OfferSerializer
+
+    def get_queryset(self):
+        top_offers = Offer.objects.annotate(num_reservations=Count('reservation')).order_by('-num_reservations')[:3]
+        return top_offers
