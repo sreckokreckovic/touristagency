@@ -33,6 +33,9 @@ class OfferSerializer(serializers.ModelSerializer):
             'title',
             'description',
             'price',
+            'duration',
+            'start_date',
+            'end_date',
             'category',
             'media',
         ]

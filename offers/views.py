@@ -24,7 +24,7 @@ class CategoryViewSet(ModelViewSet):
 
 class OfferViewSet(ModelViewSet):
     serializer_class = OfferSerializer
-    permission_classes = [IsReadOnlyOrAdmin]
+    permission_classes = []
 
     def get_queryset(self):
         return Offer.objects.all()

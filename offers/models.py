@@ -12,6 +12,9 @@ class Offer(models.Model):
     title = models.CharField(max_length=64)
     description = models.CharField(max_length=256, blank=True)
     price = models.IntegerField()
+    duration = models.IntegerField(default= None)
+    start_date = models.DateField(default= None)
+    end_date = models.DateField(default= None)
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
 
 
@@ -20,4 +23,4 @@ class Media(models.Model):
     offer = models.ForeignKey(Offer, on_delete=models.CASCADE)
 
     def __str__(self):
-        return self.title
+        return self.path

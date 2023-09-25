@@ -36,4 +36,6 @@ urlpatterns = [
     path('api-auth/', include('rest_framework.urls')),
     path('top-offers/', offer_view.TopOffersView.as_view(), name ='top_offers'),
 
+
+
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -42,6 +42,7 @@ class OfferSerializer(serializers.ModelSerializer):
         ]
 
 
+
 class ReservationSerializer(serializers.ModelSerializer):
     user = UserSerializer(read_only=True)
     offer = serializers.PrimaryKeyRelatedField(queryset=Offer.objects.all())
