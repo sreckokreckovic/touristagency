@@ -5,6 +5,8 @@ from rest_framework.viewsets import ModelViewSet
 from offers.models import Offer, Category, Media
 from .serializers import OfferSerializer, CategorySerializer
 from rest_framework import permissions, status, generics
+from rest_framework import filters
+from django_filters.rest_framework import DjangoFilterBackend
 
 
 class IsReadOnlyOrAdmin(permissions.BasePermission):
@@ -25,7 +27,8 @@ class CategoryViewSet(ModelViewSet):
 class OfferViewSet(ModelViewSet):
     serializer_class = OfferSerializer
     permission_classes = []
-
+    filter_backends = [DjangoFilterBackend]
+    filterset_fields = ['title', 'category']
 
     def get_queryset(self):
         return Offer.objects.all()
