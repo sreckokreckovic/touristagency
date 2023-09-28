@@ -25,7 +25,7 @@ from rest_framework.routers import DefaultRouter
 import offers.views as offer_view
 import reservations.views as reservation_view
 import testimonials.views as testimonial_view
-
+from rest_framework_simplejwt import views as jwt_views
 
 
 router = DefaultRouter()
@@ -41,8 +41,9 @@ urlpatterns = [
     path('api-auth/', include('rest_framework.urls')),
     path('top-offers/', offer_view.TopOffersView.as_view(), name ='top_offers'),
     path('register/',UserRegistration.as_view(),name = 'registration'),
-    path('login/', UserLogin.as_view(), name = 'login'),
-    path('logout/', UserLogout.as_view(),name = 'logout')
+    path('api/token/', jwt_views.TokenObtainPairView.as_view(), name='token_obtain_pair'),
+    path('api/token/refresh/', jwt_views.TokenRefreshView.as_view(),name='token_refresh'),
+
 
 
 
