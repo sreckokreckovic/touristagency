@@ -1,5 +1,5 @@
 from django.db.models import Count
-from rest_framework.permissions import IsAdminUser
+from rest_framework.permissions import IsAdminUser, IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.viewsets import ModelViewSet
 from offers.models import Offer, Category, Media
@@ -16,7 +16,7 @@ class IsReadOnlyOrAdmin(permissions.BasePermission):
 
 class CategoryViewSet(ModelViewSet):
     serializer_class = CategorySerializer
-    permission_classes = [IsAdminUser]
+    permission_classes = []
 
     def get_queryset(self):
         return Category.objects.all()
@@ -25,6 +25,7 @@ class CategoryViewSet(ModelViewSet):
 class OfferViewSet(ModelViewSet):
     serializer_class = OfferSerializer
     permission_classes = []
+
 
     def get_queryset(self):
         return Offer.objects.all()

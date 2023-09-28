@@ -17,11 +17,16 @@ Including another URLconf
 from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, include
+from rest_framework.settings import api_settings
+from authentication.views import UserRegistration, UserLogin,UserLogout
+
 from touristagency import settings
 from rest_framework.routers import DefaultRouter
 import offers.views as offer_view
 import reservations.views as reservation_view
 import testimonials.views as testimonial_view
+
+
 
 router = DefaultRouter()
 router.register("offers",offer_view.OfferViewSet, basename='offer')
@@ -35,6 +40,9 @@ urlpatterns = [
     path('', include(router.urls)),
     path('api-auth/', include('rest_framework.urls')),
     path('top-offers/', offer_view.TopOffersView.as_view(), name ='top_offers'),
+    path('register/',UserRegistration.as_view(),name = 'registration'),
+    path('login/', UserLogin.as_view(), name = 'login'),
+    path('logout/', UserLogout.as_view(),name = 'logout')
 
 
 
