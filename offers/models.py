@@ -10,7 +10,7 @@ class Category(models.Model):
 
 class Offer(models.Model):
     title = models.CharField(max_length=64)
-    description = models.CharField(max_length=256, blank=True)
+    description = models.TextField()
     price = models.IntegerField()
     duration = models.IntegerField(default= None)
     start_date = models.DateField(default= None)
