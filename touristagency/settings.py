@@ -90,9 +90,9 @@ WSGI_APPLICATION = 'touristagency.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'tourist_agency_db',
+        'NAME': 'bzv_db',
         'USER': 'root',
-        'PASSWORD':'NoaNoa12',
+        'PASSWORD':'',
         'HOST': 'localhost',
         'PORT': '3306',
         'OPTIONS': {

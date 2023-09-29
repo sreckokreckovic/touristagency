@@ -25,7 +25,8 @@ class CategorySerializer(serializers.ModelSerializer):
 
 class OfferSerializer(serializers.ModelSerializer):
     media = serializers.SerializerMethodField()
-    category = CategorySerializer()
+    category = serializers.PrimaryKeyRelatedField(queryset=Category.objects.all())
+
 
     class Meta:
         model = Offer
