@@ -92,7 +92,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'tourist_agency_db',
         'USER': 'root',
-        'PASSWORD':'',
+        'PASSWORD':'NoaNoa12',
         'HOST': 'localhost',
         'PORT': '3306',
         'OPTIONS': {

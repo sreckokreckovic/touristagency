@@ -18,7 +18,7 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, include
 from rest_framework.settings import api_settings
-from authentication.views import UserRegistration, UserLogin,UserLogout
+from authentication.views import UserRegistration
 
 from touristagency import settings
 from rest_framework.routers import DefaultRouter
