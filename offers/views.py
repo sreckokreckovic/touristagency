@@ -18,7 +18,7 @@ class IsReadOnlyOrAdmin(permissions.BasePermission):
 
 class CategoryViewSet(ModelViewSet):
     serializer_class = CategorySerializer
-    permission_classes = [IsAdminUser]
+    permission_classes = []
 
     def get_queryset(self):
         return Category.objects.all()
@@ -26,7 +26,7 @@ class CategoryViewSet(ModelViewSet):
 
 class OfferViewSet(ModelViewSet):
     serializer_class = OfferSerializer
-    permission_classes = [IsReadOnlyOrAdmin]
+    permission_classes = []
     filter_backends = [DjangoFilterBackend]
     filterset_fields = ['title', 'category']
 
