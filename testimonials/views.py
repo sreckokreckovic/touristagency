@@ -19,3 +19,9 @@ class TestimonialViewSet(ModelViewSet):
             raise PermissionDenied("You need to be authenticated")
 
         serializer.save(user=self.request.user)
+
+    def perform_destroy(self, instance):
+        if not self.request.user.is_staff:
+            raise PermissionDenied("Only administrator can delete")
+
+        instance.delete()
