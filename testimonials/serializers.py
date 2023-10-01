@@ -24,7 +24,6 @@ class TestimonialSerializer(serializers.ModelSerializer):
         model = Testimonial
         fields = [
             'id',
-            'title',
             'description',
             'user',
         ]
