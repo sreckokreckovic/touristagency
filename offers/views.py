@@ -1,6 +1,7 @@
 from django.db.models import Count
 from rest_framework.permissions import IsAdminUser, IsAuthenticated
 from rest_framework.response import Response
+from rest_framework.views import APIView
 from rest_framework.viewsets import ModelViewSet
 from offers.models import Offer, Category, Media
 from .serializers import OfferSerializer, CategorySerializer
@@ -51,3 +52,14 @@ class TopOffersView(generics.ListAPIView):
     def get_queryset(self):
         top_offers = Offer.objects.annotate(num_reservations=Count('reservation')).order_by('-num_reservations')[:3]
         return top_offers
+
+
+class OfferListByCategory(APIView):
+    def get(self, request, category_id):
+        try:
+            category = Category.objects.get(pk=category_id)
+            offers = Offer.objects.filter(category=category)
+            serializer = OfferSerializer(offers, many=True)
+            return Response(serializer.data)
+        except Category.DoesNotExist:
+            return Response({'error': 'Category not found'}, status=status.HTTP_404_NOT_FOUND)

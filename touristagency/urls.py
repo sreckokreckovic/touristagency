@@ -42,6 +42,7 @@ urlpatterns = [
     path('top-offers/', offer_view.TopOffersView.as_view(), name ='top_offers'),
     path('register/',UserRegistration.as_view(),name = 'registration'),
     path('api/token/', jwt_views.TokenObtainPairView.as_view(), name='token_obtain_pair'),
+    path('offers/category/<int:category_id>/', offer_view.OfferListByCategory.as_view(), name='offer-list-by-category'),
     path('api/token/refresh/', jwt_views.TokenRefreshView.as_view(),name='token_refresh'),
 
 
