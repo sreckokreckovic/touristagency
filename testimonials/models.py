@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 
 
 class Testimonial(models.Model):
-    title = models.CharField(max_length=64)
+
     description = models.CharField(max_length=256)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 
