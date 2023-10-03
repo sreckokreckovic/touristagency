@@ -18,7 +18,7 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, include
 
-from authentication.views import UserRegistration
+from authentication.views import UserRegistration, UserProfileView
 
 from touristagency import settings
 from rest_framework.routers import DefaultRouter
@@ -44,6 +44,8 @@ urlpatterns = [
     path('api/token/', jwt_views.TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('destinations/category/<int:category_id>/', offer_view.OfferListByCategory.as_view(), name='destination-list-by-category'),
     path('api/token/refresh/', jwt_views.TokenRefreshView.as_view(),name='token_refresh'),
+    path('api/user/profile/', UserProfileView.as_view(), name='user_profile'),
+
 
 
 
