@@ -1,4 +1,5 @@
 from django.db.models import Count
+from rest_framework.pagination import PageNumberPagination
 from rest_framework.permissions import IsAdminUser, IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.views import APIView
@@ -9,6 +10,10 @@ from rest_framework import permissions, status, generics
 from rest_framework import filters
 from django_filters.rest_framework import DjangoFilterBackend
 
+class CustomPagination(PageNumberPagination):
+    page_size = 6
+    page_size_query_param = 'page_size'
+    max_page_size = 100
 
 class IsReadOnlyOrAdmin(permissions.BasePermission):
     def has_permission(self, request, view):
@@ -30,6 +35,7 @@ class OfferViewSet(ModelViewSet):
     permission_classes = [IsReadOnlyOrAdmin]
     filter_backends = [DjangoFilterBackend]
     filterset_fields = ['category','title']
+    pagination_class = CustomPagination
 
 
     def get_queryset(self):
