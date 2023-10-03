@@ -29,7 +29,8 @@ class OfferViewSet(ModelViewSet):
     serializer_class = OfferSerializer
     permission_classes = [IsReadOnlyOrAdmin]
     filter_backends = [DjangoFilterBackend]
-    filterset_fields = ['title', 'category']
+    filterset_fields = ['category']
+    search_fields = ['title']
 
     def get_queryset(self):
         return Offer.objects.all()
