@@ -3,7 +3,6 @@ from rest_framework import status
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.views import APIView
-
 from authentication.serializers import UserSerializer
 
 
@@ -33,13 +32,18 @@ class UserProfileView(APIView):
 
     def put(self, request):
         user = request.user
-
         new_data = request.data
 
-        user.username = new_data.get('username', user.username)
-        user.email = new_data.get('email', user.email)
-        user.first_name = new_data.get('first_name', user.first_name)
-        user.last_name = new_data.get('last_name', user.last_name)
+        allowed_fields = ['email', 'first_name', 'last_name']
+
+        for field in allowed_fields:
+            if field in new_data:
+                setattr(user, field, new_data[field])
+
+        new_password = new_data.get('password')
+        if new_password:
+            user.password = make_password(new_password)
+
         user.save()
 
         return Response({'message': 'Profile has been updated successfully'})

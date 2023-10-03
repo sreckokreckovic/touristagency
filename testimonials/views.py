@@ -1,8 +1,5 @@
-from django.shortcuts import render
 from rest_framework.exceptions import PermissionDenied
-from rest_framework.permissions import IsAuthenticated
 from rest_framework.viewsets import ModelViewSet
-
 from testimonials.models import Testimonial
 from testimonials.serializers import TestimonialSerializer
 
@@ -19,4 +16,3 @@ class TestimonialViewSet(ModelViewSet):
             raise PermissionDenied("You need to be authenticated")
 
         serializer.save(user=self.request.user)
-

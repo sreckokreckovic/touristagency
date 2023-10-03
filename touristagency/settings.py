@@ -43,10 +43,7 @@ INSTALLED_APPS = [
     'testimonials',
     'authentication',
     'corsheaders',
-'django_filters',
-
-
-
+    'django_filters',
 
 ]
 
@@ -93,7 +90,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'bzv_db',
         'USER': 'root',
-        'PASSWORD':'',
+        'PASSWORD': '',
         'HOST': 'localhost',
         'PORT': '3306',
         'OPTIONS': {
@@ -132,8 +129,6 @@ REST_FRAMEWORK = {
 SIMPLE_JWT = {
     'ACCESS_TOKEN_LIFETIME': timedelta(minutes=60),
 }
-
-
 
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/
