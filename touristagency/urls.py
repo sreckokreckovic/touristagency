@@ -17,7 +17,7 @@ Including another URLconf
 from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, include
-from rest_framework.settings import api_settings
+
 from authentication.views import UserRegistration
 
 from touristagency import settings
@@ -44,6 +44,7 @@ urlpatterns = [
     path('api/token/', jwt_views.TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('offers/category/<int:category_id>/', offer_view.OfferListByCategory.as_view(), name='offer-list-by-category'),
     path('api/token/refresh/', jwt_views.TokenRefreshView.as_view(),name='token_refresh'),
+
 
 
 

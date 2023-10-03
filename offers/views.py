@@ -19,7 +19,7 @@ class IsReadOnlyOrAdmin(permissions.BasePermission):
 
 class CategoryViewSet(ModelViewSet):
     serializer_class = CategorySerializer
-    permission_classes = [IsAdminUser]
+    permission_classes = []
 
     def get_queryset(self):
         return Category.objects.all()
