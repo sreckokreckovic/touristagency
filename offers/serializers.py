@@ -49,3 +49,7 @@ class OfferSerializer(serializers.ModelSerializer):
 
         media_serializer = MediaSerializer(media_objects, many=True, context=self.context)
         return media_serializer.data
+    def to_representation(self, instance):
+        representation = super().to_representation(instance)
+        representation['category'] = CategorySerializer(instance.category).data
+        return representation
