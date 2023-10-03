@@ -29,7 +29,7 @@ class OfferViewSet(ModelViewSet):
     serializer_class = OfferSerializer
     permission_classes = [IsReadOnlyOrAdmin]
     filter_backends = [DjangoFilterBackend]
-    filterset_fields = ['category','^title']
+    filterset_fields = ['category','title']
 
 
     def get_queryset(self):
