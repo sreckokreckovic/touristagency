@@ -29,7 +29,7 @@ from rest_framework_simplejwt import views as jwt_views
 
 
 router = DefaultRouter()
-router.register("offers",offer_view.OfferViewSet, basename='offer')
+router.register("destinations",offer_view.OfferViewSet, basename='offer')
 router.register("categories",offer_view.CategoryViewSet, basename='category')
 router.register("reservations",reservation_view.ReservationViewSet, basename='reservation')
 router.register("testimonials",testimonial_view.TestimonialViewSet, basename='testimonial')
@@ -39,10 +39,10 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include(router.urls)),
     path('api-auth/', include('rest_framework.urls')),
-    path('top-offers/', offer_view.TopOffersView.as_view(), name ='top_offers'),
+    path('top-destinations/', offer_view.TopOffersView.as_view(), name ='top_destinations'),
     path('register/',UserRegistration.as_view(),name = 'registration'),
     path('api/token/', jwt_views.TokenObtainPairView.as_view(), name='token_obtain_pair'),
-    path('offers/category/<int:category_id>/', offer_view.OfferListByCategory.as_view(), name='offer-list-by-category'),
+    path('destinations/category/<int:category_id>/', offer_view.OfferListByCategory.as_view(), name='destination-list-by-category'),
     path('api/token/refresh/', jwt_views.TokenRefreshView.as_view(),name='token_refresh'),
 
 
