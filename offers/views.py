@@ -30,7 +30,7 @@ class OfferViewSet(ModelViewSet):
     permission_classes = [IsReadOnlyOrAdmin]
     filter_backends = [DjangoFilterBackend]
     filterset_fields = ['category','^title']
-    search_fields = ['title']
+
 
     def get_queryset(self):
         return Offer.objects.all()
