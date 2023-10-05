@@ -45,6 +45,7 @@ urlpatterns = [
     path('destinations/category/<int:category_id>/', offer_view.OfferListByCategory.as_view(), name='destination-list-by-category'),
     path('api/token/refresh/', jwt_views.TokenRefreshView.as_view(),name='token_refresh'),
     path('api/user/profile/', UserProfileView.as_view(), name='user_profile'),
+    path('destinations-short-data/', offer_view.OfferTitleIdViewSet.as_view(),name='destinations-short-data'),
 
 
 

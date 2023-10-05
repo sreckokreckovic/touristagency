@@ -5,7 +5,7 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework.viewsets import ModelViewSet
 from offers.models import Offer, Category, Media
-from .serializers import OfferSerializer, CategorySerializer
+from .serializers import OfferSerializer, CategorySerializer, OfferTitleIdSerializer
 from rest_framework import permissions, status, generics
 from rest_framework import filters
 from django_filters.rest_framework import DjangoFilterBackend
@@ -88,3 +88,7 @@ class OfferListByCategory(APIView):
             return Response(serializer.data)
         except Category.DoesNotExist:
             return Response({'error': 'Category not found'}, status=status.HTTP_404_NOT_FOUND)
+
+class OfferTitleIdViewSet(generics.ListAPIView):
+    queryset = Offer.objects.all()
+    serializer_class = OfferTitleIdSerializer

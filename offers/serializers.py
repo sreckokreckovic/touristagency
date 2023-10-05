@@ -54,3 +54,11 @@ class OfferSerializer(serializers.ModelSerializer):
         representation = super().to_representation(instance)
         representation['category'] = CategorySerializer(instance.category).data
         return representation
+
+class OfferTitleIdSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Offer
+        fields = [
+            'id',
+            'title',
+        ]
