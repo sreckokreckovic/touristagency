@@ -9,11 +9,23 @@ from .serializers import OfferSerializer, CategorySerializer
 from rest_framework import permissions, status, generics
 from rest_framework import filters
 from django_filters.rest_framework import DjangoFilterBackend
+from django_filters import rest_framework as filters
+
+
+class TitleFilter(filters.FilterSet):
+    title = filters.CharFilter(field_name="title", lookup_expr="icontains")
+
+    class Meta:
+        model = Offer
+        fields = ['title', 'category']
+
 
 class CustomPagination(PageNumberPagination):
     page_size = 6
     page_size_query_param = 'page_size'
     max_page_size = 100
+
+
 class IsReadOnlyOrAdmin(permissions.BasePermission):
     def has_permission(self, request, view):
         if request.method == 'GET':
@@ -39,11 +51,10 @@ class CategoryViewSet(ModelViewSet):
 class OfferViewSet(ModelViewSet):
     serializer_class = OfferSerializer
     permission_classes = [IsReadOnlyOrAdmin]
-    filter_backends = [DjangoFilterBackend, filters.SearchFilter]
-    filterset_fields = ['category','title']
-    #search_fields = ['title']
+    filter_backends = [DjangoFilterBackend]
+    filterset_class = TitleFilter
+    filterset_fields = ['category', 'title']
     pagination_class = CustomPagination
-
 
     def get_queryset(self):
         return Offer.objects.all()
