@@ -40,8 +40,8 @@ class OfferViewSet(ModelViewSet):
     serializer_class = OfferSerializer
     permission_classes = [IsReadOnlyOrAdmin]
     filter_backends = [DjangoFilterBackend, filters.SearchFilter]
-    filterset_fields = ['category']
-    search_fields = ['title']
+    filterset_fields = ['category','title']
+    #search_fields = ['title']
     pagination_class = CustomPagination
 
 
