@@ -35,6 +35,7 @@ class OfferSerializer(serializers.ModelSerializer):
             'title',
             'description',
             'price',
+            'number_of_people',
             'duration',
             'start_date',
             'end_date',

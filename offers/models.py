@@ -12,6 +12,7 @@ class Offer(models.Model):
     title = models.CharField(max_length=64)
     description = models.TextField()
     price = models.IntegerField()
+    number_of_people = models.IntegerField(default=30)
     duration = models.IntegerField(default= None)
     start_date = models.DateField(default= None)
     end_date = models.DateField(default= None)
