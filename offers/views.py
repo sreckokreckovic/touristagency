@@ -14,7 +14,6 @@ class CustomPagination(PageNumberPagination):
     page_size = 6
     page_size_query_param = 'page_size'
     max_page_size = 100
-
 class IsReadOnlyOrAdmin(permissions.BasePermission):
     def has_permission(self, request, view):
         if request.method == 'GET':
@@ -33,8 +32,9 @@ class CategoryViewSet(ModelViewSet):
 class OfferViewSet(ModelViewSet):
     serializer_class = OfferSerializer
     permission_classes = [IsReadOnlyOrAdmin]
-    filter_backends = [DjangoFilterBackend]
-    filterset_fields = ['category','title']
+    filter_backends = [DjangoFilterBackend, filters.SearchFilter]
+    filterset_fields = ['category']
+    search_fields = ['title']
     pagination_class = CustomPagination
 
 
