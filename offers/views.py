@@ -92,3 +92,4 @@ class OfferListByCategory(APIView):
 class OfferTitleIdViewSet(generics.ListAPIView):
     queryset = Offer.objects.all()
     serializer_class = OfferTitleIdSerializer
+    pagination_class = CustomPagination
