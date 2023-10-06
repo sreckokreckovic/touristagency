@@ -10,9 +10,7 @@ class TestimonialViewSet(ModelViewSet):
     permission_classes = []
 
     def get_permissions(self):
-        if self.action in ['create']:
-            permission_classes = [IsAuthenticated]
-        elif self.action in ['update', 'partial_update', 'destroy']:
+        if self.action in ['create','update', 'partial_update', 'destroy']:
             permission_classes = [IsAdminUser]
         else:
             permission_classes = []
@@ -20,8 +18,3 @@ class TestimonialViewSet(ModelViewSet):
     def get_queryset(self):
         return Testimonial.objects.all()
 
-    def perform_create(self, serializer):
-        if not self.request.user.is_authenticated:
-            raise PermissionDenied("You need to be authenticated")
-
-        serializer.save(user=self.request.user)

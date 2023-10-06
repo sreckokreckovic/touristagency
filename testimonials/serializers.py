@@ -18,13 +18,13 @@ class UserSerializer(serializers.ModelSerializer):
 
 
 class TestimonialSerializer(serializers.ModelSerializer):
-    user = UserSerializer(read_only=True)
-
     class Meta:
         model = Testimonial
         fields = [
             'id',
+            'first_name',
+            'last_name',
             'description',
-            'user',
+
         ]
-        read_only_fields = ['id', 'user']
+        read_only_fields = ['id']
